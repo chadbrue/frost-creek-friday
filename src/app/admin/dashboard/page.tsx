@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation'
+import Link from 'next/link'
 import { getAdminSession } from '@/lib/auth'
 import { supabaseAdmin } from '@/lib/supabase'
 import { getUpcomingFriday, formatEventDate, formatTeeTime } from '@/lib/events'
