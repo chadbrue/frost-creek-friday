@@ -20,7 +20,7 @@ export default function SignupPage() {
     phone: '',
     ghin_number: '',
   })
-  const [teePreference, setTeePreference] = useState<TeePreference>('frost')
+  const [teePreference, setTeePreference] = useState<TeePreference>('creek')
   const [event, setEvent] = useState<{ id: string; event_date: string; status: string } | null>(null)
   const [signupStatus, setSignupStatus] = useState<'confirmed' | 'waitlist' | null>(null)
   const [confirmedCount, setConfirmedCount] = useState(0)
