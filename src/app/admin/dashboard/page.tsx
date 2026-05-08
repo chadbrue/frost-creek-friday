@@ -1,5 +1,4 @@
 import { redirect } from 'next/navigation'
-import Link from 'next/link'
 import { getAdminSession } from '@/lib/auth'
 import { supabaseAdmin } from '@/lib/supabase'
 import { getUpcomingFriday, formatEventDate, formatTeeTime } from '@/lib/events'
@@ -54,7 +53,6 @@ export default async function AdminDashboard() {
           <Link href="/admin/groups" className="text-sm hover:text-yellow-300">
             Groups View →
           </Link>
-          <LogoutBtn />
         </div>
       </header>
 
@@ -194,21 +192,3 @@ export default async function AdminDashboard() {
   )
 }
 
-function LogoutBtn() {
-  return (
-    <form action="/api/admin" method="POST">
-      {/* Client-side logout handled in AdminActions */}
-      <Link
-        href="/api/admin"
-        onClick={async (e) => {
-          e.preventDefault()
-          await fetch('/api/admin', { method: 'DELETE' })
-          window.location.href = '/admin'
-        }}
-        className="text-sm opacity-70 hover:opacity-100"
-      >
-        Sign Out
-      </Link>
-    </form>
-  )
-}
