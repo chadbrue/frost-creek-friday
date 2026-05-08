@@ -5,22 +5,23 @@ import { addDays, nextFriday, startOfDay, isFriday, parseISO, format } from 'dat
  * Signup opens 6 days before (Saturday) and closes Thursday at 5pm MT.
  */
 export function getUpcomingFriday(): Date | null {
+  // TESTING MODE: bypass date restrictions when env var is set
+  if (process.env.NEXT_PUBLIC_TESTING_MODE === 'true') {
+    const today = startOfDay(new Date())
+    return isFriday(today) ? today : nextFriday(today)
+  }
+
   const now = new Date()
   const today = startOfDay(now)
 
-  // Find the next Friday from today
   let friday = isFriday(today) ? today : nextFriday(today)
 
-  // Signup opens the Saturday before (6 days prior)
   const signupOpens = addDays(friday, -6)
-
-  // Signup closes Thursday 5pm MT (the day before)
   const signupCloses = addDays(friday, -1)
-  signupCloses.setHours(17, 0, 0, 0) // 5:00 PM
+  signupCloses.setHours(17, 0, 0, 0)
 
   if (now < signupOpens) return null
   if (now > signupCloses) {
-    // Try the following Friday
     friday = nextFriday(addDays(friday, 1))
     const nextOpens = addDays(friday, -6)
     if (now < nextOpens) return null
@@ -31,6 +32,9 @@ export function getUpcomingFriday(): Date | null {
 }
 
 export function isSignupOpen(eventDate: string): boolean {
+  // TESTING MODE: always open
+  if (process.env.NEXT_PUBLIC_TESTING_MODE === 'true') return true
+
   const friday = parseISO(eventDate)
   const now = new Date()
   const signupOpens = addDays(friday, -6)
