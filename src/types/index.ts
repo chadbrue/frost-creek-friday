@@ -25,6 +25,7 @@ export interface Player {
   email: string
   phone: string
   ghin_number: string | null
+  default_tee_preference: TeePreference | null
   created_at: string
   updated_at: string
 }

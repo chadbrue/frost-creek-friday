@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS players (
   email TEXT UNIQUE NOT NULL,
   phone TEXT UNIQUE NOT NULL,
   ghin_number TEXT,
+  default_tee_preference TEXT,
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );

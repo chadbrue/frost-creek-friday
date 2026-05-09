@@ -57,7 +57,7 @@ export default async function HomePage() {
           Friday Golf at Frost Creek
         </h1>
         <p className="text-lg opacity-90 mb-8">
-          Every Friday · 12:00 – 1:00 PM · Eagle, Colorado
+          Every Friday · 12:00 – 1:00 PM
         </p>
 
         {stats ? (
@@ -98,19 +98,13 @@ export default async function HomePage() {
           </div>
         )}
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex justify-center">
           <Link
             href="/signup"
             className="inline-block px-8 py-3 rounded-lg font-bold text-lg transition-all"
             style={{ backgroundColor: 'var(--fc-gold)', color: '#1a1a1a' }}
           >
             Sign Up to Play
-          </Link>
-          <Link
-            href="/my-signup"
-            className="inline-block px-8 py-3 rounded-lg font-bold text-lg border-2 border-white text-white hover:bg-white hover:text-blue-900 transition-all"
-          >
-            View My Signup
           </Link>
         </div>
       </section>
@@ -121,10 +115,10 @@ export default async function HomePage() {
           <InfoCard
             title="How It Works"
             items={[
-              'Sign up by Thursday at 5:00 PM',
+              'Sign up opens Friday at 4:00 PM',
+              'Sign up closes Thursday at 4:00 PM',
               'Groups drawn randomly Thursday evening',
-              'Tee times & groups sent by 6:15 PM',
-              'Tee times: 12:00 – 1:00 PM (10 min intervals)',
+              'Tee times & groups sent by 6:00 PM Thursday',
             ]}
           />
           <InfoCard
@@ -144,7 +138,7 @@ export default async function HomePage() {
               '12–28 players per week',
               'Groups of 3, 4, or 5',
               'Profile saved week to week',
-              'Cancel by Thursday at 5:00 PM',
+              'Cancel by Thursday at 4:00 PM',
             ]}
           />
         </div>

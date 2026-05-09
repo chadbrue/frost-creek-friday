@@ -1,11 +1,7 @@
 import { addDays, nextFriday, startOfDay, isFriday, parseISO, format } from 'date-fns'
 
-/**
- * Returns the next upcoming Friday that is open for signup.
- * Signup opens 6 days before (Saturday) and closes Thursday at 5pm MT.
- */
+// Signup opens the Friday before at 4pm, closes Thursday at 4pm
 export function getUpcomingFriday(): Date | null {
-  // TESTING MODE: bypass date restrictions when env var is set
   if (process.env.NEXT_PUBLIC_TESTING_MODE === 'true') {
     const today = startOfDay(new Date())
     return isFriday(today) ? today : nextFriday(today)
@@ -16,14 +12,19 @@ export function getUpcomingFriday(): Date | null {
 
   let friday = isFriday(today) ? today : nextFriday(today)
 
-  const signupOpens = addDays(friday, -6)
+  // Opens Friday before at 4pm (7 days prior)
+  const signupOpens = addDays(friday, -7)
+  signupOpens.setHours(16, 0, 0, 0)
+
+  // Closes Thursday at 4pm (1 day prior)
   const signupCloses = addDays(friday, -1)
-  signupCloses.setHours(17, 0, 0, 0)
+  signupCloses.setHours(16, 0, 0, 0)
 
   if (now < signupOpens) return null
   if (now > signupCloses) {
     friday = nextFriday(addDays(friday, 1))
-    const nextOpens = addDays(friday, -6)
+    const nextOpens = addDays(friday, -7)
+    nextOpens.setHours(16, 0, 0, 0)
     if (now < nextOpens) return null
     return friday
   }
@@ -32,14 +33,14 @@ export function getUpcomingFriday(): Date | null {
 }
 
 export function isSignupOpen(eventDate: string): boolean {
-  // TESTING MODE: always open
   if (process.env.NEXT_PUBLIC_TESTING_MODE === 'true') return true
 
   const friday = parseISO(eventDate)
   const now = new Date()
-  const signupOpens = addDays(friday, -6)
+  const signupOpens = addDays(friday, -7)
+  signupOpens.setHours(16, 0, 0, 0)
   const signupCloses = addDays(friday, -1)
-  signupCloses.setHours(17, 0, 0, 0)
+  signupCloses.setHours(16, 0, 0, 0)
   return now >= signupOpens && now <= signupCloses
 }
 
@@ -48,14 +49,12 @@ export function formatEventDate(dateStr: string): string {
 }
 
 export function formatTeeTime(timeStr: string): string {
-  // timeStr is HH:MM:SS
   const [h, m] = timeStr.split(':').map(Number)
   const period = h >= 12 ? 'PM' : 'AM'
   const hour = h > 12 ? h - 12 : h === 0 ? 12 : h
   return `${hour}:${m.toString().padStart(2, '0')} ${period}`
 }
 
-// Generate tee times starting at 12:00 PM, 10-min intervals
 export function generateTeeTimes(groupCount: number): string[] {
   const times: string[] = []
   for (let i = 0; i < groupCount; i++) {

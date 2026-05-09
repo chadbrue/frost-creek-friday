@@ -34,12 +34,6 @@ export default function Header() {
           >
             Who&apos;s Playing
           </Link>
-          <Link
-            href="/my-signup"
-            className="text-white hover:text-yellow-300 transition-colors font-semibold tracking-wide"
-          >
-            My Signup
-          </Link>
         </nav>
       </div>
     </header>

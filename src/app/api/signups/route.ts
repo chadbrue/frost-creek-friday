@@ -62,8 +62,13 @@ export async function POST(req: NextRequest) {
   // Spots 1-28 confirmed, 29-30 as fivesomes are allowed, 31+ waitlisted
   const status = totalConfirmed < 30 ? 'confirmed' : 'waitlist'
 
+  // Save tee preference as player's default for next time
+  await supabaseAdmin
+    .from('players')
+    .update({ default_tee_preference: tee_preference })
+    .eq('id', player_id)
+
   if (existing && existing.status === 'cancelled') {
-    // Re-activate cancelled signup
     const { data, error } = await supabaseAdmin
       .from('signups')
       .update({

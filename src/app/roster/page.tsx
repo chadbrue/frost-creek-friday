@@ -176,7 +176,7 @@ export default function RosterPage() {
 
                 {event.status !== 'notified' && (
                   <p className="text-xs text-stone-400 text-center">
-                    Groups and tee times will appear here after 6:15 PM Thursday.
+                    Groups and tee times will appear here after 6:00 PM Thursday.
                   </p>
                 )}
               </>

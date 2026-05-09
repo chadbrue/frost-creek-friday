@@ -70,6 +70,10 @@ export default function SignupPage() {
         phone: data.player.phone,
         ghin_number: data.player.ghin_number ?? '',
       })
+      // Pre-fill their saved tee preference
+      if (data.player.default_tee_preference) {
+        setTeePreference(data.player.default_tee_preference)
+      }
       setStep('profile')
     } else {
       // New player
@@ -143,7 +147,7 @@ export default function SignupPage() {
               Signup Not Open Yet
             </h2>
             <p className="text-stone-600">
-              Signup opens each Saturday for the coming Friday and closes Thursday at 5:00 PM.
+              Signup opens Friday at 4:00 PM and closes the following Thursday at 4:00 PM.
             </p>
           </div>
         </main>
@@ -319,7 +323,7 @@ export default function SignupPage() {
               <ProfileRow label="Email" value={player.email} />
             </div>
             <p className="text-xs text-stone-500 mb-4">
-              You&apos;ll receive your tee time and group by 6:15 PM on Thursday via email and text.
+              You&apos;ll receive your tee time and group by 6:00 PM on Thursday via email and text.
             </p>
             <div className="flex gap-3">
               <button
