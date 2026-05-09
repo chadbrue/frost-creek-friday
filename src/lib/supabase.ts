@@ -23,12 +23,18 @@ export function getSupabaseAdmin(): SupabaseClient {
   return _admin
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const supabase = new Proxy({} as SupabaseClient, {
-  get: (_, prop) => (getSupabase() as unknown as Record<string | symbol, unknown>)[prop],
-})
+function makeProxy(getter: () => SupabaseClient): SupabaseClient {
+  return new Proxy({} as SupabaseClient, {
+    get(_, prop) {
+      const client = getter()
+      const value = (client as unknown as Record<string | symbol, unknown>)[prop]
+      // Bind functions so `this` is always the real client, not the proxy
+      return typeof value === 'function'
+        ? (value as (...args: unknown[]) => unknown).bind(client)
+        : value
+    },
+  })
+}
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const supabaseAdmin = new Proxy({} as SupabaseClient, {
-  get: (_, prop) => (getSupabaseAdmin() as unknown as Record<string | symbol, unknown>)[prop],
-})
+export const supabase = makeProxy(getSupabase)
+export const supabaseAdmin = makeProxy(getSupabaseAdmin)

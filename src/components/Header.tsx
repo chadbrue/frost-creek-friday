@@ -9,8 +9,8 @@ export default function Header() {
           <Image
             src="https://frostcreek.com/wp-content/uploads/2015/07/fc-logo.png"
             alt="Frost Creek Golf Course"
-            width={120}
-            height={60}
+            width={180}
+            height={90}
             style={{ objectFit: 'contain' }}
             unoptimized
           />
