@@ -128,7 +128,7 @@ export default function MySignupPage() {
             value={lookup}
             onChange={(e) => setLookup(e.target.value)}
             required
-            className="flex-1 border border-stone-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-700"
+            className="flex-1 border border-stone-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-700"
           />
           <button
             type="submit"
@@ -176,7 +176,7 @@ export default function MySignupPage() {
                 {isNotified && myGroup && (
                   <div
                     className="rounded-lg p-3 mb-3 text-sm"
-                    style={{ backgroundColor: '#f0f7ee' }}
+                    style={{ backgroundColor: '#EFF6FF' }}
                   >
                     <p className="font-semibold mb-1" style={{ color: 'var(--fc-green)' }}>
                       Tee Time: {formatTeeTime(myGroup.tee_time)} — Group {myGroup.group_number}
@@ -210,7 +210,7 @@ export default function MySignupPage() {
 
 function StatusBadge({ status }: { status: string }) {
   const styles: Record<string, string> = {
-    confirmed: 'bg-green-100 text-green-800',
+    confirmed: 'bg-blue-100 text-blue-800',
     waitlist: 'bg-amber-100 text-amber-800',
     cancelled: 'bg-stone-100 text-stone-500',
   }

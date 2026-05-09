@@ -210,7 +210,7 @@ export default function SignupPage() {
                 value={lookup}
                 onChange={(e) => setLookup(e.target.value)}
                 required
-                className="w-full border border-stone-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-700"
+                className="w-full border border-stone-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-700"
               />
               <Btn loading={loading}>Continue</Btn>
             </form>
@@ -288,7 +288,7 @@ export default function SignupPage() {
                   key={key}
                   className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-all ${
                     teePreference === key
-                      ? 'border-green-700 bg-green-50'
+                      ? 'border-blue-600 bg-blue-50'
                       : 'border-stone-200 hover:border-stone-400'
                   }`}
                 >
@@ -298,7 +298,7 @@ export default function SignupPage() {
                     value={key}
                     checked={teePreference === key}
                     onChange={() => setTeePreference(key)}
-                    className="accent-green-800"
+                    className="accent-blue-800"
                   />
                   <span className="text-sm font-medium">{label}</span>
                 </label>
@@ -395,7 +395,7 @@ function StepIndicator({ current }: { current: Step }) {
           >
             {i + 1}
           </div>
-          <span className={`text-xs ${i <= index ? 'text-green-800 font-semibold' : 'text-stone-400'}`}>
+          <span className={`text-xs ${i <= index ? 'text-blue-800 font-semibold' : 'text-stone-400'}`}>
             {s.label}
           </span>
           {i < steps.length - 1 && <div className="w-4 h-px bg-stone-300" />}
@@ -448,7 +448,7 @@ function Field({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         required={required}
-        className="w-full border border-stone-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-700"
+        className="w-full border border-stone-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-700"
       />
     </div>
   )

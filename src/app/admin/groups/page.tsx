@@ -52,7 +52,7 @@ export default async function GroupsPage() {
         ) : data.groups.length === 0 ? (
           <div className="text-center py-16 text-stone-500">
             <p>No groups generated yet.</p>
-            <Link href="/admin/dashboard" className="text-green-800 underline text-sm">
+            <Link href="/admin/dashboard" className="text-blue-300 underline text-sm">
               Go to Dashboard to generate groups
             </Link>
           </div>

@@ -108,7 +108,7 @@ export default async function HomePage() {
           </Link>
           <Link
             href="/my-signup"
-            className="inline-block px-8 py-3 rounded-lg font-bold text-lg border-2 border-white text-white hover:bg-white hover:text-green-900 transition-all"
+            className="inline-block px-8 py-3 rounded-lg font-bold text-lg border-2 border-white text-white hover:bg-white hover:text-blue-900 transition-all"
           >
             View My Signup
           </Link>

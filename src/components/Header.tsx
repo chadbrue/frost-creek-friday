@@ -29,6 +29,12 @@ export default function Header() {
             Sign Up
           </Link>
           <Link
+            href="/roster"
+            className="text-white hover:text-yellow-300 transition-colors font-semibold tracking-wide"
+          >
+            Who&apos;s Playing
+          </Link>
+          <Link
             href="/my-signup"
             className="text-white hover:text-yellow-300 transition-colors font-semibold tracking-wide"
           >

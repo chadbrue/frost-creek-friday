@@ -135,7 +135,7 @@ export default async function AdminDashboard() {
                         <td className="px-4 py-3 text-stone-600">{TEE_LABELS[s.tee_preference]}</td>
                         <td className="px-4 py-3">
                           <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${
-                            s.status === 'confirmed' ? 'bg-green-100 text-green-800' :
+                            s.status === 'confirmed' ? 'bg-blue-100 text-blue-800' :
                             s.status === 'waitlist' ? 'bg-amber-100 text-amber-800' :
                             'bg-stone-100 text-stone-500'
                           }`}>
